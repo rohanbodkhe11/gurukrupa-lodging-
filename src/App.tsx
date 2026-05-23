@@ -760,7 +760,7 @@ export default function App() {
 
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     {[
-                      { name: "UNESCO Ellora Caves", dist: "4.0 KM Away", desc: "World heritage complex featuring rock-cut temples, shrines and sculpture caves.", img: "/src/assets/images/ellora_caves_1779508550723.png" },
+                      { name: "UNESCO Ellora Caves", dist: "4.0 KM Away", desc: "World heritage complex featuring rock-cut temples, shrines and sculpture caves.", img: "https://whc.unesco.org/uploads/thumbs/site_0243_0001-750-750-20151104152442.webp" },
                       { name: "Bhadra Maruti Temple", dist: "1.5 KM Away", desc: "Sacred temple featuring a legendary unique reclining posture of Lord Hanuman.", img: "https://i.ibb.co/Fk1tHsSC/images-8.jpg" },
                       { name: "Daulatabad Majestic Fort", dist: "11 KM Away", desc: "Sixteenth-century medieval hill fortress with dark mazes, ramparts, and moat setups.", img: "https://i.ibb.co/F46sTby4/unnamed-15.jpg" },
                       { name: "Ghrishneshwar Jyotirlinga", dist: "4.5 KM Away", desc: "Ancient red-stone temple, revered as the 12th holy Jyotirlinga Shiva shrine in India.", img: "https://i.ibb.co/R4pwhhjq/unnamed-16.jpg" }
