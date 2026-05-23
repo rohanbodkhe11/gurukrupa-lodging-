@@ -90,9 +90,9 @@ export default function AdminPanel({
 
   // Gallery Asset Management
   const [gallery, setGallery] = useState([
-    { id: 'gal-2', url: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80', caption: 'Premium Gold Family Suite Living area', category: 'Rooms' },
-    { id: 'gal-3', url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80', caption: 'Prisinte Lobby & Welcoming Seatings', category: 'Reception' },
-    { id: 'gal-4', url: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80', caption: 'Comfort Double King AC bedding layout', category: 'Rooms' }
+    { id: 'gal-1', url: 'https://i.ibb.co/5hY9s6kc/IMG-20260104-WA0001.jpg', caption: 'Lodge Main Corridor & Lobby entry', category: 'Reception' },
+    { id: 'gal-2', url: 'https://i.ibb.co/mr6rJ1xM/IMG-20260104-WA0015.jpg', caption: 'Standard Comfort Double AC Suite layout', category: 'Rooms' },
+    { id: 'gal-3', url: 'https://i.ibb.co/Fk1tHsSC/images-8.jpg', caption: 'Gurukrupa Lodging Exterior Building View', category: 'Exterior' }
   ]);
   const [newGalleryUrl, setNewGalleryUrl] = useState('');
   const [newGalleryCaption, setNewGalleryCaption] = useState('');

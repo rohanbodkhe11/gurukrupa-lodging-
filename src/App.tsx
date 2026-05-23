@@ -31,7 +31,7 @@ const STATIC_ROOMS: Room[] = [
       "CCTV Gated Security"
     ],
     "images": [
-      "/src/assets/images/room_pink_accent_1779474155323.png"
+      "https://i.ibb.co/R4pwhhjq/unnamed-16.jpg"
     ],
     "rating": 4.8,
     "reviewsCount": 15,
@@ -55,7 +55,7 @@ const STATIC_ROOMS: Room[] = [
       "Gated Car Parking"
     ],
     "images": [
-      "/src/assets/images/room_green_accent_1779474172944.png"
+      "https://i.ibb.co/F46sTby4/unnamed-15.jpg"
     ],
     "rating": 4.9,
     "reviewsCount": 12,
@@ -79,7 +79,7 @@ const STATIC_ROOMS: Room[] = [
       "Private Protected Parking"
     ],
     "images": [
-      "/src/assets/images/room_beige_accent_1779474189996.png"
+      "https://i.ibb.co/SXFYLJrn/IMG-20260104-WA0004.jpg"
     ],
     "rating": 4.7,
     "reviewsCount": 22,
@@ -103,7 +103,7 @@ const STATIC_ROOMS: Room[] = [
       "Balcony & Safe Parking"
     ],
     "images": [
-      "/src/assets/images/room_teal_accent_1779474205876.png"
+      "https://i.ibb.co/cXY4BPgr/IMG-20260104-WA0018.jpg"
     ],
     "rating": 5.0,
     "reviewsCount": 8,
@@ -791,13 +791,15 @@ export default function App() {
                     <p className="text-xs text-slate-400 max-w-sm mx-auto">Explore elegant snapshots of our lodge lobby, double AC bedrooms, lounge, and facilities.</p>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {[
-                      { title: "Lobby Reception Counter", tag: "Reception", src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=80" },
-                      { title: "Premium Double Bedroom", tag: "Rooms", src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=700&q=80" },
-                      { title: "Spacious Family King Suite", tag: "Rooms", src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80" },
-                      { title: "Clean Restroom Fittings", tag: "Amenities", src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" },
-                      { title: "Lobby Resting Chairs", tag: "Lounge", src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" }
+                      { title: "Lodge Main Corridor", tag: "Corridor", src: "https://i.ibb.co/5hY9s6kc/IMG-20260104-WA0001.jpg" },
+                      { title: "Standard Comfort Double AC Suite", tag: "Rooms", src: "https://i.ibb.co/mr6rJ1xM/IMG-20260104-WA0015.jpg" },
+                      { title: "Spacious Deluxe Family Suite Bedding", tag: "Rooms", src: "https://i.ibb.co/F46sTby4/unnamed-15.jpg" },
+                      { title: "Well-ventilated Premium Room AC Layout", tag: "Rooms", src: "https://i.ibb.co/SXFYLJrn/IMG-20260104-WA0004.jpg" },
+                      { title: "Lodge Exterior & Entryview", tag: "Exterior", src: "https://i.ibb.co/Fk1tHsSC/images-8.jpg" },
+                      { title: "Pristine Luxury Double AC Suite", tag: "Rooms", src: "https://i.ibb.co/cXY4BPgr/IMG-20260104-WA0018.jpg" },
+                      { title: "Royal Double Spacious Bed Layout", tag: "Rooms", src: "https://i.ibb.co/R4pwhhjq/unnamed-16.jpg" }
                     ].map((img, idx) => (
                       <div 
                         key={idx} 
@@ -1104,12 +1106,15 @@ export default function App() {
                   <p className="text-xs text-slate-400 mt-1">High resolution snapshots of our double suites, solar boilers, and front security compound.</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                   {[
-                    { title: "Premium Suite AC Master Double Bedroom", src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=700&q=80" },
-                    { title: "Deluxe Single AC Comfort Standard Bedroom", src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" },
-                    { title: "Auxiliary Lobby Waiting Chair lounge", src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" },
-                    { title: "Solar Heating Fresh Boiler Setup", src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" }
+                    { title: "Standard Comfort Double AC Suite", src: "https://i.ibb.co/mr6rJ1xM/IMG-20260104-WA0015.jpg" },
+                    { title: "Spacious Deluxe Family Bed Layout", src: "https://i.ibb.co/F46sTby4/unnamed-15.jpg" },
+                    { title: "Well-ventilated Premium Room Suite", src: "https://i.ibb.co/SXFYLJrn/IMG-20260104-WA0004.jpg" },
+                    { title: "Lodge Main Corridor & Lobby Entry", src: "https://i.ibb.co/5hY9s6kc/IMG-20260104-WA0001.jpg" },
+                    { title: "Pristine Luxury Double AC Suite", src: "https://i.ibb.co/cXY4BPgr/IMG-20260104-WA0018.jpg" },
+                    { title: "Gurukrupa Lodging Main Building Front", src: "https://i.ibb.co/Fk1tHsSC/images-8.jpg" },
+                    { title: "Royal Double Spacious Bed Layout", src: "https://i.ibb.co/R4pwhhjq/unnamed-16.jpg" }
                   ].map((item, idx) => (
                     <div 
                       key={idx} 
