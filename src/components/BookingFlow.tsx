@@ -187,18 +187,39 @@ export default function BookingFlow({
         localStorage.setItem('gurukrupa_bookings', JSON.stringify(bookingsList));
       }
 
-      // If we are in purely simulated client-side offline mode, wrap up the confirmation instantly
-      if (simulatedOffline) {
-        setBookedStatus(tempBooking);
-        setStep(5);
-        return;
-      }
-
       // 2. Load the official Razorpay script from CDN
       const isScriptLoaded = await loadRazorpayScript();
       if (!isScriptLoaded) {
         // Fallback option in case of offline/iframe Sandbox strictness
         console.warn("Could not load Razorpay script from CDN, using secure fallback verification handler");
+        
+        if (simulatedOffline) {
+          // Confirm booking directly if offline simulate
+          const finalBkg = {
+            ...tempBooking!,
+            paymentStatus: 'Paid' as const,
+            status: 'Confirmed' as const,
+            paymentId: `PAY-${paymentMethod.toUpperCase()}-${Math.floor(100000 + Math.random() * 900000)}`
+          };
+          const cachedStr = localStorage.getItem('gurukrupa_bookings');
+          let bookingsList: Booking[] = [];
+          try {
+            bookingsList = cachedStr ? JSON.parse(cachedStr) : [];
+          } catch (e) {
+            bookingsList = [];
+          }
+          const idx = bookingsList.findIndex((b: Booking) => b.id === finalBkg.id);
+          if (idx !== -1) {
+            bookingsList[idx] = finalBkg;
+          } else {
+            bookingsList.push(finalBkg);
+          }
+          localStorage.setItem('gurukrupa_bookings', JSON.stringify(bookingsList));
+          setBookedStatus(finalBkg);
+          setStep(5);
+          return;
+        }
+
         let payData = null;
         try {
           const resPay = await fetch(`/api/bookings/${tempBooking.id}/payment`, {
@@ -253,6 +274,76 @@ export default function BookingFlow({
 
         setBookedStatus(payData.booking);
         setStep(5);
+        return;
+      }
+
+      // If simulatedOffline is true and script IS loaded, open Razorpay directly with clean developer test key!
+      if (simulatedOffline) {
+        console.log("Entering simulated offline standard Razorpay payment flow.");
+        const options = {
+          key: "rzp_test_pAtRIn8pAOpQO4", // Real Razorpay client API sample key for testing triggers
+          amount: pricing.total * 100, // paise
+          currency: "INR",
+          name: "Gurukrupa Lodging",
+          description: `Booking for ${room.name} - Room ${room.roomNumber}`,
+          image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=150&h=150&q=80",
+          handler: function (response: any) {
+            setIsSubmitting(true);
+            try {
+              const paymentRzpId = response.razorpay_payment_id || `PAY-RP-${Math.floor(100000 + Math.random() * 900000)}`;
+              const finalBkg = {
+                ...tempBooking!,
+                paymentStatus: 'Paid' as const,
+                status: 'Confirmed' as const,
+                paymentId: paymentRzpId,
+                paymentMethod: paymentMethod
+              };
+
+              const cachedStr = localStorage.getItem('gurukrupa_bookings');
+              let bookingsList: Booking[] = [];
+              try {
+                bookingsList = cachedStr ? JSON.parse(cachedStr) : [];
+              } catch (e) {
+                bookingsList = [];
+              }
+              const idx = bookingsList.findIndex((b: Booking) => b.id === finalBkg.id);
+              if (idx !== -1) {
+                bookingsList[idx] = finalBkg;
+              } else {
+                bookingsList.push(finalBkg);
+              }
+              localStorage.setItem('gurukrupa_bookings', JSON.stringify(bookingsList));
+
+              setBookedStatus(finalBkg);
+              setStep(5);
+            } catch (err: any) {
+              alert("Payment Success Handler Exception: " + err.message);
+            } finally {
+              setIsSubmitting(false);
+            }
+          },
+          prefill: {
+            name: guestName,
+            email: guestEmail,
+            contact: guestPhone
+          },
+          notes: {
+            booking_id: tempBooking.id,
+            room_id: room.id,
+            nights: calcNights()
+          },
+          theme: {
+            color: "#f59e0b"
+          },
+          modal: {
+            ondismiss: function () {
+              setIsSubmitting(false);
+            }
+          }
+        };
+
+        const rzpInstance = new (window as any).Razorpay(options);
+        rzpInstance.open();
         return;
       }
 
