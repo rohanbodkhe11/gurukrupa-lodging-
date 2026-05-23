@@ -791,16 +791,13 @@ export default function App() {
                     <p className="text-xs text-slate-400 max-w-sm mx-auto">Explore elegant snapshots of our lodge lobby, double AC bedrooms, lounge, and facilities.</p>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {[
-                      { title: "Lodge Exterior View", tag: "Building", src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" },
                       { title: "Lobby Reception Counter", tag: "Reception", src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=80" },
                       { title: "Premium Double Bedroom", tag: "Rooms", src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=700&q=80" },
                       { title: "Spacious Family King Suite", tag: "Rooms", src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80" },
                       { title: "Clean Restroom Fittings", tag: "Amenities", src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" },
-                      { title: "Protected Gated Parking Area", tag: "Exterior", src: "https://images.unsplash.com/photo-1506521788701-1e13a7e4b2a3?auto=format&fit=crop&w=700&q=80" },
-                      { title: "Lobby Resting Chairs", tag: "Lounge", src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" },
-                      { title: "In-Room Auxiliary Dining Setup", tag: "Dining", src: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=700&q=80" }
+                      { title: "Lobby Resting Chairs", tag: "Lounge", src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" }
                     ].map((img, idx) => (
                       <div 
                         key={idx} 
@@ -1111,10 +1108,8 @@ export default function App() {
                   {[
                     { title: "Premium Suite AC Master Double Bedroom", src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=700&q=80" },
                     { title: "Deluxe Single AC Comfort Standard Bedroom", src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" },
-                    { title: "Lodge Compound Gated Corridor", src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" },
                     { title: "Auxiliary Lobby Waiting Chair lounge", src: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" },
-                    { title: "Solar Heating Fresh Boiler Setup", src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" },
-                    { title: "Safe Compound Entrance Open Parking", src: "https://images.unsplash.com/photo-1506521788701-1e13a7e4b2a3?auto=format&fit=crop&w=700&q=80" }
+                    { title: "Solar Heating Fresh Boiler Setup", src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" }
                   ].map((item, idx) => (
                     <div 
                       key={idx} 
