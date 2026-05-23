@@ -279,9 +279,29 @@ export default function BookingFlow({
 
       // If simulatedOffline is true and script IS loaded, open Razorpay directly with clean developer test key!
       if (simulatedOffline) {
+        let activeRzpKey = "rzp_test_pAtRIn8pAOpQO4";
+        try {
+          // 1. Try reading standard Vite-prefixed env variable
+          const viteEnvKey = (import.meta as any).env?.VITE_RAZORPAY_KEY_ID;
+          // 2. Try reading injected build-time define variable
+          const buildTimeKey = typeof process !== 'undefined' && process.env ? (process.env.RAZORPAY_KEY_ID || process.env.VITE_RAZORPAY_KEY_ID) : '';
+          
+          if (viteEnvKey) {
+            activeRzpKey = viteEnvKey;
+            console.log("Using Razorpay public key from client env:", activeRzpKey);
+          } else if (buildTimeKey) {
+            activeRzpKey = buildTimeKey;
+            console.log("Using Razorpay public key from build-time injection:", activeRzpKey);
+          } else {
+            console.log("Using default fallback Razorpay test key:", activeRzpKey);
+          }
+        } catch (err) {
+          console.warn("Unable to parse environment variables for key, falling back.", err);
+        }
+
         console.log("Entering simulated offline standard Razorpay payment flow.");
         const options = {
-          key: "rzp_test_pAtRIn8pAOpQO4", // Real Razorpay client API sample key for testing triggers
+          key: activeRzpKey,
           amount: pricing.total * 100, // paise
           currency: "INR",
           name: "Gurukrupa Lodging",
