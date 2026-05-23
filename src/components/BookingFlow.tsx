@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Calendar, User, CreditCard, ChevronRight, CheckCircle2, 
-  ArrowLeft, Users, ShieldAlert, BadgeInfo, QrCode, Sparkles, Printer, RefreshCw
+  ArrowLeft, Users, ShieldAlert, BadgeInfo, QrCode, Sparkles, Printer, RefreshCw,
+  Lock, ShieldCheck
 } from 'lucide-react';
 import { Room, Booking, UserProfile } from '../types';
 
@@ -727,7 +728,7 @@ export default function BookingFlow({
               </motion.div>
             )}
 
-            {/* STEP 4: PAYMENT OPTIONS INTERFACE */}
+            {/* STEP 4: SECURED PAYMENT & ORDER SUMMARY */}
             {step === 4 && (
               <motion.div
                 key="step4"
@@ -736,143 +737,97 @@ export default function BookingFlow({
                 exit={{ opacity: 0, scale: 0.98 }}
                 className="bg-slate-900 border border-amber-500/30 p-6 rounded-xl space-y-6 shadow-xl relative overflow-hidden"
               >
-                {/* Razorpay branding header */}
+                {/* Razorpay secured header */}
                 <div className="flex justify-between items-start gap-4 border-b border-slate-800 pb-4">
-                  <div>
-                    <span className="text-[9px] uppercase font-bold tracking-widest bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/20">Secure Payments via Razorpay</span>
-                    <h2 className="text-xl font-serif font-bold text-slate-100 mt-1">Select Payment Gateway</h2>
+                  <div className="space-y-1">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-widest bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20">
+                      <Lock className="h-3 w-3" /> Secure Payment Gateway Connected
+                    </span>
+                    <h2 className="text-xl font-serif font-bold text-slate-100">Secured Checkout</h2>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-xs text-slate-400 font-mono">Amount Payable</span>
+                    <span className="text-xs text-slate-400 font-mono">Total Amount Payable</span>
                     <span className="text-xl font-mono text-amber-400 font-bold">₹{pricing.total}</span>
                   </div>
                 </div>
 
-                {/* Left tab selectors */}
-                <div className="grid grid-cols-3 gap-2 bg-slate-950 p-1 rounded-lg">
-                  <button 
-                    onClick={() => setPaymentMethod('UPI')}
-                    className={`py-2 text-center text-xs font-bold rounded-md transition-colors ${
-                      paymentMethod === 'UPI' ? 'bg-amber-500 text-slate-950' : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    UPI QR / App
-                  </button>
-                  <button 
-                    onClick={() => setPaymentMethod('Card')}
-                    className={`py-2 text-center text-xs font-bold rounded-md transition-colors ${
-                      paymentMethod === 'Card' ? 'bg-amber-500 text-slate-950' : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    Credit / Debit Card
-                  </button>
-                  <button 
-                    onClick={() => setPaymentMethod('Netbanking')}
-                    className={`py-2 text-center text-xs font-bold rounded-md transition-colors ${
-                      paymentMethod === 'Netbanking' ? 'bg-amber-500 text-slate-950' : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    Net Banking
-                  </button>
+                {/* Secure Trust Badge and Information Card */}
+                <div className="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-4">
+                  <h3 className="text-xs font-mono uppercase text-amber-500 font-semibold tracking-wider">Lodging Order Reservation Breakdown</h3>
+                  
+                  <div className="space-y-2 text-xs divide-y divide-slate-900">
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400">Designated Room</span>
+                      <span className="text-white font-semibold">Room {room?.roomNumber} - {room?.name}</span>
+                    </div>
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400">Check-in Date</span>
+                      <span className="text-white font-semibold">{checkIn} (From 12:00 PM)</span>
+                    </div>
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400">Check-out Date</span>
+                      <span className="text-white font-semibold">{checkOut} (Strictly 11:00 AM)</span>
+                    </div>
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400">Stay Duration</span>
+                      <span className="text-amber-400 font-bold font-mono">{calcNights()} Night(s)</span>
+                    </div>
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-slate-400">Guests Register Count</span>
+                      <span className="text-white font-semibold">{guestsCount} Guest Occupant(s)</span>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-dashed border-slate-800 pt-3 space-y-1.5 text-xs">
+                    <div className="flex justify-between text-slate-400">
+                      <span>Room Fare Rate x {calcNights()} Night(s):</span>
+                      <span className="font-mono">₹{pricing.subtotal}</span>
+                    </div>
+                    <div className="flex justify-between text-slate-400">
+                      <span>Standard Taxes & Security GFC (12% GST):</span>
+                      <span className="font-mono">₹{pricing.tax}</span>
+                    </div>
+                    <div className="flex justify-between text-sm font-bold text-amber-400 pt-1 border-t border-slate-900">
+                      <span>Gross Net Amount:</span>
+                      <span className="font-mono text-base">₹{pricing.total}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="p-4 bg-slate-950 rounded-lg min-h-[140px] flex flex-col justify-center">
-                  {paymentMethod === 'UPI' && (
-                    <div className="space-y-4 text-center flex flex-col items-center">
-                      <div className="bg-white p-2.5 rounded-lg inline-block shadow-md">
-                        {/* Static QR illustration */}
-                        <QrCode className="h-28 w-28 text-slate-950" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-xs text-slate-300">Scan this QR code using BHIM, GPAY, PhonePe, or Paytm app</p>
-                        <p className="text-[10px] text-slate-500 font-mono">Or enter unified payment virtual ID below:</p>
-                      </div>
-                      <input 
-                        type="text"
-                        value={upiId}
-                        onChange={(e) => setUpiId(e.target.value)}
-                        className="bg-slate-900 text-center border border-slate-700 text-xs px-3 py-2 rounded-lg text-amber-400 w-full max-w-sm focus:outline-none focus:border-amber-500"
-                      />
-                    </div>
-                  )}
-
-                  {paymentMethod === 'Card' && (
-                    <div className="space-y-3">
-                      <div className="space-y-1">
-                        <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Cardholder Number</label>
-                        <div className="relative">
-                          <CreditCard className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
-                          <input 
-                            type="text"
-                            placeholder="4111 2222 3333 4444"
-                            value={cardNo}
-                            onChange={(e) => setCardNo(e.target.value)}
-                            className="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 pl-10 rounded-lg text-white w-full focus:outline-none focus:border-amber-500"
-                          />
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Expiry (MM/YY)</label>
-                          <input 
-                            type="text"
-                            placeholder="12/28"
-                            value={cardExpiry}
-                            onChange={(e) => setCardExpiry(e.target.value)}
-                            className="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-lg text-white w-full text-center focus:outline-none"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] uppercase font-mono tracking-wider text-slate-400">Secure CVV</label>
-                          <input 
-                            type="password"
-                            placeholder="***"
-                            value={cardCVV}
-                            onChange={(e) => setCardCVV(e.target.value)}
-                            maxLength={3}
-                            className="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-lg text-white w-full text-center focus:outline-none"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {paymentMethod === 'Netbanking' && (
-                    <div className="space-y-3">
-                      <p className="text-xs text-slate-300 text-center">Redirect securely to your bank portal after clicking verify:</p>
-                      <select className="bg-slate-900 border border-slate-700 text-xs px-3 py-2.5 rounded-lg text-white w-full focus:outline-none focus:border-amber-500">
-                        <option>State Bank of India (SBI)</option>
-                        <option>HDFC Bank Ltd</option>
-                        <option>ICICI Bank Ltd</option>
-                        <option>Bank of Baroda</option>
-                        <option>Axis Bank</option>
-                      </select>
-                    </div>
-                  )}
+                {/* Razorpay official PCI-DSS compliant footer */}
+                <div className="bg-slate-950/60 border border-slate-800/80 p-4 rounded-lg space-y-2 text-center">
+                  <div className="flex items-center justify-center gap-1.5 text-xs text-slate-300 font-medium">
+                    <ShieldCheck className="h-4.5 w-4.5 text-emerald-400" />
+                    <span>Real-time Secure Encryption via Razorpay</span>
+                  </div>
+                  <p className="text-[10.5px] text-slate-500 leading-relaxed max-w-md mx-auto">
+                    We accept Credit cards, Debit cards, Net-banking, and UPI (GPay, PhonePe, Paytm). Payment is PCI-DSS Compliant. No card credentials or sensitive pins are written or persisted on our servers.
+                  </p>
                 </div>
 
+                {/* Actions */}
                 <div className="flex justify-between items-center pt-4 border-t border-slate-800">
                   <button 
                     onClick={handleBackStep}
                     disabled={isSubmitting}
-                    className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-white"
+                    className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-white disabled:opacity-50"
                   >
                     <ArrowLeft className="h-4 w-4" /> Back
                   </button>
                   <button 
                     onClick={handleProceedPayment}
                     disabled={isSubmitting}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 text-slate-950 font-bold text-sm rounded-lg shadow-md transition-all active:scale-95 disabled:opacity-50"
+                    className="flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 text-slate-950 font-extrabold text-sm rounded-lg shadow-lg shadow-amber-500/10 transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
                         <RefreshCw className="h-4 w-4 animate-spin" />
-                        <span>Verifying Security...</span>
+                        <span>Initializing Razorpay Gateway...</span>
                       </>
                     ) : (
                       <>
-                        <CheckCircle2 className="h-4 w-4" />
-                        <span>Confirm Success (₹{pricing.total})</span>
+                        <CreditCard className="h-4 w-4" />
+                        <span>Pay Securely via Razorpay (₹{pricing.total})</span>
                       </>
                     )}
                   </button>
