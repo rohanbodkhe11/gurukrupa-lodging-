@@ -366,7 +366,7 @@ async function startServer() {
   app.use(express.json());
 
   // Serve the src/assets folder statically so direct image requests resolve successfully
-  app.use('/src/assets', express.static(path.join(process.cwd(), 'src/assets')));
+  app.use('/src/assets', express.static(path.join(process.cwd(), 'public/src/assets')));
 
   // HEALTH CHECK
   app.get('/api/health', (req, res) => {
