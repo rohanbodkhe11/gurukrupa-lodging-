@@ -31,7 +31,7 @@ const DEFAULT_DATABASE: DatabaseSchema = {
       price: 1500,
       amenities: ["Air Conditioning", "Plush Double Bed", "Attached Bathroom", "LED TV & Cable", "Free Highspeed WiFi", "Solar Hot Water", "CCTV Gated Security"],
       images: [
-        "/src/assets/images/room_pink_accent_1779474155323.png"
+        "https://i.ibb.co/SXFYLJrn/IMG-20260104-WA0004.jpg"
       ],
       rating: 4.8,
       reviewsCount: 15,
@@ -47,7 +47,7 @@ const DEFAULT_DATABASE: DatabaseSchema = {
       price: 1800,
       amenities: ["Comfortable Air Conditioning", "Spacious Double Bed", "Attached Bathroom", "LED TV & Room Service", "Free Highspeed WiFi", "Solar Hot Water", "Gated Car Parking"],
       images: [
-        "/src/assets/images/room_green_accent_1779474172944.png"
+        "https://i.ibb.co/5hY9s6kc/IMG-20260104-WA0001.jpg"
       ],
       rating: 4.9,
       reviewsCount: 12,
@@ -63,7 +63,7 @@ const DEFAULT_DATABASE: DatabaseSchema = {
       price: 2000,
       amenities: ["High-performance AC", "Premium King Bed", "Attached Washroom", "LED TV & Intercom", "Free Highspeed WiFi", "Solar Hot Water", "Private Protected Parking"],
       images: [
-        "/src/assets/images/room_beige_accent_1779474189996.png"
+        "https://i.ibb.co/mr6rJ1xM/IMG-20260104-WA0015.jpg"
       ],
       rating: 4.7,
       reviewsCount: 22,
@@ -79,7 +79,7 @@ const DEFAULT_DATABASE: DatabaseSchema = {
       price: 2400,
       amenities: ["In-Room Washbasin & Mirror", "Luxury AC System", "Attached Premium Washroom", "Smart LED TV", "Free Highspeed WiFi", "Solar Hot Water", "Balcony & Safe Parking"],
       images: [
-        "/src/assets/images/room_teal_accent_1779474205876.png"
+        "https://i.ibb.co/cXY4BPgr/IMG-20260104-WA0018.jpg"
       ],
       rating: 5.0,
       reviewsCount: 8,

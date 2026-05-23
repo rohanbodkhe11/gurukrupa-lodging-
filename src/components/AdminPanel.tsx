@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { Room, Booking, Review, UserProfile, SiteSettings, Notification } from '../types';
 
-const LogoImage = "/src/assets/images/gurukrupa_logo_1779473752353.png";
+const LogoImage = "https://i.ibb.co/jvK3nSVv/1779473626954.png";
 
 interface AdminPanelProps {
   user: UserProfile;

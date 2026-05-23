@@ -31,7 +31,7 @@ const STATIC_ROOMS: Room[] = [
       "CCTV Gated Security"
     ],
     "images": [
-      "/src/assets/images/room_pink_accent_1779474155323.png"
+      "https://i.ibb.co/SXFYLJrn/IMG-20260104-WA0004.jpg"
     ],
     "rating": 4.8,
     "reviewsCount": 15,
@@ -55,7 +55,7 @@ const STATIC_ROOMS: Room[] = [
       "Gated Car Parking"
     ],
     "images": [
-      "/src/assets/images/room_green_accent_1779474172944.png"
+      "https://i.ibb.co/5hY9s6kc/IMG-20260104-WA0001.jpg"
     ],
     "rating": 4.9,
     "reviewsCount": 12,
@@ -79,7 +79,7 @@ const STATIC_ROOMS: Room[] = [
       "Private Protected Parking"
     ],
     "images": [
-      "/src/assets/images/room_beige_accent_1779474189996.png"
+      "https://i.ibb.co/mr6rJ1xM/IMG-20260104-WA0015.jpg"
     ],
     "rating": 4.7,
     "reviewsCount": 22,
@@ -103,7 +103,7 @@ const STATIC_ROOMS: Room[] = [
       "Balcony & Safe Parking"
     ],
     "images": [
-      "/src/assets/images/room_teal_accent_1779474205876.png"
+      "https://i.ibb.co/cXY4BPgr/IMG-20260104-WA0018.jpg"
     ],
     "rating": 5.0,
     "reviewsCount": 8,
@@ -761,9 +761,9 @@ export default function App() {
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     {[
                       { name: "UNESCO Ellora Caves", dist: "4.0 KM Away", desc: "World heritage complex featuring rock-cut temples, shrines and sculpture caves.", img: "/src/assets/images/ellora_caves_1779508550723.png" },
-                      { name: "Bhadra Maruti Temple", dist: "1.5 KM Away", desc: "Sacred temple featuring a legendary unique reclining posture of Lord Hanuman.", img: "/src/assets/images/bhadra_maruti_temple_1779508514809.png" },
-                      { name: "Daulatabad Majestic Fort", dist: "11 KM Away", desc: "Sixteenth-century medieval hill fortress with dark mazes, ramparts, and moat setups.", img: "/src/assets/images/daulatabad_fort_1779508534046.png" },
-                      { name: "Ghrishneshwar Jyotirlinga", dist: "4.5 KM Away", desc: "Ancient red-stone temple, revered as the 12th holy Jyotirlinga Shiva shrine in India.", img: "/src/assets/images/grishneshwar_temple_1779508761195.png" }
+                      { name: "Bhadra Maruti Temple", dist: "1.5 KM Away", desc: "Sacred temple featuring a legendary unique reclining posture of Lord Hanuman.", img: "https://i.ibb.co/Fk1tHsSC/images-8.jpg" },
+                      { name: "Daulatabad Majestic Fort", dist: "11 KM Away", desc: "Sixteenth-century medieval hill fortress with dark mazes, ramparts, and moat setups.", img: "https://i.ibb.co/F46sTby4/unnamed-15.jpg" },
+                      { name: "Ghrishneshwar Jyotirlinga", dist: "4.5 KM Away", desc: "Ancient red-stone temple, revered as the 12th holy Jyotirlinga Shiva shrine in India.", img: "https://i.ibb.co/R4pwhhjq/unnamed-16.jpg" }
                     ].map((att, idx) => (
                       <div key={idx} className="relative aspect-[16/11] rounded-xl overflow-hidden group shadow border border-slate-950">
                         <img 

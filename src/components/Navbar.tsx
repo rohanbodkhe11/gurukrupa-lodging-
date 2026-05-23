@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Hotel, User, LogOut, LayoutDashboard, PhoneCall } from 'lucide-react';
 import { UserProfile } from '../types';
 
-const LogoImage = "/src/assets/images/gurukrupa_logo_1779473752353.png";
+const LogoImage = "https://i.ibb.co/jvK3nSVv/1779473626954.png";
 
 interface NavbarProps {
   currentTab: string;
