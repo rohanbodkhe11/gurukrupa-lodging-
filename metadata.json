@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Gurukrupa Lodging",
+  "description": "A premium, responsive hotel booking platform featuring real-time availability, secure payments, and an integrated admin dashboard for seamless operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

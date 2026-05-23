@@ -1,0 +1,81 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net - Default Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reuseable global helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'rupeshpatil4586@gmail.com' ||
+        request.auth.token.email == 'admin@gurukrupahotel.com'
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // 2. Collection Rules
+    
+    // User Profiles containing PII
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isSignedIn() && request.auth.uid == userId
+        && request.resource.data.role == "customer"; // Forbid self-elevation to admin
+      allow update: if isOwner(userId) 
+        && request.resource.data.role == resource.data.role // Can change basic details but not elevate roles
+        && request.resource.data.isBlocked == resource.data.isBlocked; // Cannot unblock self
+      allow delete: if isAdmin();
+    }
+
+    // Admins helper mapping collection
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if false; // Managed externally
+    }
+
+    // Rooms (Publicly readable, updated by admin)
+    match /rooms/{roomId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Bookings (Guest's own bookings are readable or fully manageable by admin)
+    match /bookings/{bookingId} {
+      allow read: if isSignedIn() && (resource.data.guestEmail == request.auth.token.email || isAdmin());
+      allow create: if isSignedIn();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Reviews (Publicly readable, modified by admin or posted by verified signed-in guest)
+    match /reviews/{reviewId} {
+      allow read: if resource.data.approved == true || isAdmin();
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // Static settings
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Notifications (Admins read/write all, customers read non-PII alerts)
+    match /notifications/{notifId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

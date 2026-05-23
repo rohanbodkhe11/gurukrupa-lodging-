@@ -1,0 +1,137 @@
+{
+  "entities": {
+    "user": {
+      "title": "UserProfile",
+      "description": "Registered guest profile and administrator roles",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique user identifier, matching request.auth.uid" },
+        "name": { "type": "string", "description": "Full legal name" },
+        "email": { "type": "string", "description": "Verified guest email address" },
+        "phone": { "type": "string", "description": "Contact phone number" },
+        "role": { "type": "string", "enum": ["customer", "admin"], "description": "RBAC role determines access tier" },
+        "isBlocked": { "type": "boolean", "description": "True if user is suspended from reservations" },
+        "registeredAt": { "type": "string", "format": "date-time", "description": "Profile creation timestamp" }
+      },
+      "required": ["id", "name", "email", "phone", "role", "isBlocked", "registeredAt"]
+    },
+    "room": {
+      "title": "Room",
+      "description": "Individual accommodation suite inventory details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique room ID" },
+        "roomNumber": { "type": "string", "description": "Physical room identification number" },
+        "name": { "type": "string", "description": "Aesthetic suite title" },
+        "type": { "type": "string", "enum": ["Single", "Double", "Family"], "description": "Room tier category" },
+        "ac": { "type": "boolean", "description": "AC comfort status flag" },
+        "capacity": { "type": "number", "description": "Max occupancies limit" },
+        "price": { "type": "number", "description": "Price per night stay in INR" },
+        "amenities": { "type": "array", "description": "Offered perks (WiFi, Hot water etc)" },
+        "images": { "type": "array", "description": "Hosted cover media URLs" },
+        "rating": { "type": "number", "description": "Calculated average rating" },
+        "reviewsCount": { "type": "number", "description": "Total feedback counter" },
+        "status": { "type": "string", "enum": ["Available", "Maintenance"], "description": "Is room fit for rent" }
+      },
+      "required": ["id", "roomNumber", "name", "type", "ac", "capacity", "price", "amenities", "images", "rating", "reviewsCount", "status"]
+    },
+    "booking": {
+      "title": "Booking",
+      "description": "Lodge reservation session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique reservation tracker ID" },
+        "roomId": { "type": "string", "description": "Booked room ID" },
+        "roomName": { "type": "string", "description": "Booked suite name" },
+        "roomNumber": { "type": "string", "description": "Booked room number" },
+        "guestName": { "type": "string", "description": "Guest legal name" },
+        "guestEmail": { "type": "string", "description": "Guest email" },
+        "guestPhone": { "type": "string", "description": "Guest phone number" },
+        "checkIn": { "type": "string", "description": "YYYY-MM-DD stay commencement" },
+        "checkOut": { "type": "string", "description": "YYYY-MM-DD stay departure" },
+        "guestsCount": { "type": "number", "description": "Guests list size" },
+        "totalAmount": { "type": "number", "description": "Total payment in INR" },
+        "status": { "type": "string", "enum": ["Pending", "Confirmed", "Checked-In", "Completed", "Cancelled"], "description": "Stay progress state" },
+        "paymentId": { "type": "string", "description": "Razorpay transaction reference" },
+        "paymentStatus": { "type": "string", "enum": ["Pending", "Paid", "Failed", "Refunded"], "description": "Payment outcome" },
+        "paymentMethod": { "type": "string", "description": "UPI, card, or cash" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "roomId", "roomName", "roomNumber", "guestName", "guestEmail", "guestPhone", "checkIn", "checkOut", "guestsCount", "totalAmount", "status", "paymentStatus", "createdAt"]
+    },
+    "review": {
+      "title": "Review",
+      "description": "Verified guest feedback reviews",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "roomId": { "type": "string" },
+        "roomName": { "type": "string" },
+        "authorName": { "type": "string" },
+        "rating": { "type": "number" },
+        "comment": { "type": "string" },
+        "date": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "approved": { "type": "boolean" }
+      },
+      "required": ["id", "roomId", "roomName", "authorName", "rating", "comment", "date", "verified", "approved"]
+    },
+    "settings": {
+      "title": "SiteSettings",
+      "description": "Dynanmic CMS branding options for Gurukrupa Lodging",
+      "type": "object",
+      "properties": {
+        "siteName": { "type": "string" },
+        "tagline": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "aboutText": { "type": "string" },
+        "mission": { "type": "string" },
+        "vision": { "type": "string" }
+      },
+      "required": ["siteName", "tagline", "phone", "email", "address", "whatsappNumber", "aboutText", "mission", "vision"]
+    },
+    "notification": {
+      "title": "Notification",
+      "description": "Lodge event notification records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["booking", "payment", "admin", "system"] },
+        "date": { "type": "string", "format": "date-time" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "title", "message", "type", "date", "read"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "user",
+      "description": "Guests profile registry collection"
+    },
+    "rooms": {
+      "schema": "room",
+      "description": "Suites layout configuration and status collection"
+    },
+    "bookings": {
+      "schema": "booking",
+      "description": "Reservations catalog collection"
+    },
+    "reviews": {
+      "schema": "review",
+      "description": "Guest ratings content reviews"
+    },
+    "settings": {
+      "schema": "settings",
+      "description": "Branding content customization documents"
+    },
+    "notifications": {
+      "schema": "notification",
+      "description": "Activity feeds and warnings logs"
+    }
+  }
+}

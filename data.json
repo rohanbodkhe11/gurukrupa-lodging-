@@ -1,0 +1,239 @@
+{
+  "rooms": [
+    {
+      "id": "room-101",
+      "roomNumber": "101",
+      "name": "Deluxe Pink Accent Double AC",
+      "type": "Double",
+      "ac": true,
+      "capacity": 2,
+      "price": 1500,
+      "amenities": [
+        "Air Conditioning",
+        "Plush Double Bed",
+        "Attached Bathroom",
+        "LED TV & Cable",
+        "Free Highspeed WiFi",
+        "Solar Hot Water",
+        "CCTV Gated Security"
+      ],
+      "images": [
+        "/src/assets/images/room_pink_accent_1779474155323.png"
+      ],
+      "rating": 4.8,
+      "reviewsCount": 15,
+      "status": "Available"
+    },
+    {
+      "id": "room-102",
+      "roomNumber": "102",
+      "name": "Premium Green Comfort Double AC",
+      "type": "Double",
+      "ac": true,
+      "capacity": 2,
+      "price": 1800,
+      "amenities": [
+        "Comfortable Air Conditioning",
+        "Spacious Double Bed",
+        "Attached Bathroom",
+        "LED TV & Room Service",
+        "Free Highspeed WiFi",
+        "Solar Hot Water",
+        "Gated Car Parking"
+      ],
+      "images": [
+        "/src/assets/images/room_green_accent_1779474172944.png"
+      ],
+      "rating": 4.9,
+      "reviewsCount": 12,
+      "status": "Available"
+    },
+    {
+      "id": "room-201",
+      "roomNumber": "201",
+      "name": "Classic Beige Elegance Double AC",
+      "type": "Double",
+      "ac": true,
+      "capacity": 2,
+      "price": 2000,
+      "amenities": [
+        "High-performance AC",
+        "Premium King Bed",
+        "Attached Washroom",
+        "LED TV & Intercom",
+        "Free Highspeed WiFi",
+        "Solar Hot Water",
+        "Private Protected Parking"
+      ],
+      "images": [
+        "/src/assets/images/room_beige_accent_1779474189996.png"
+      ],
+      "rating": 4.7,
+      "reviewsCount": 22,
+      "status": "Available"
+    },
+    {
+      "id": "room-202",
+      "roomNumber": "202",
+      "name": "Signature Teal Royal Suite AC",
+      "type": "Double",
+      "ac": true,
+      "capacity": 2,
+      "price": 2400,
+      "amenities": [
+        "In-Room Washbasin & Mirror",
+        "Luxury AC System",
+        "Attached Premium Washroom",
+        "Smart LED TV",
+        "Free Highspeed WiFi",
+        "Solar Hot Water",
+        "Balcony & Safe Parking"
+      ],
+      "images": [
+        "/src/assets/images/room_teal_accent_1779474205876.png"
+      ],
+      "rating": 5.0,
+      "reviewsCount": 8,
+      "status": "Available"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "BKG-2026-0001",
+      "roomId": "room-101",
+      "roomName": "Deluxe AC Room",
+      "roomNumber": "101",
+      "guestName": "Rupesh Patil",
+      "guestEmail": "rupeshpatil4586@gmail.com",
+      "guestPhone": "7620586155",
+      "checkIn": "2026-06-10",
+      "checkOut": "2026-06-12",
+      "guestsCount": 2,
+      "totalAmount": 3000,
+      "status": "Confirmed",
+      "paymentId": "PAY-UPI-12345678",
+      "paymentStatus": "Paid",
+      "paymentMethod": "UPI",
+      "createdAt": "2026-05-22T10:00:00Z"
+    },
+    {
+      "id": "BKG-2026-8075",
+      "roomId": "room-101",
+      "roomName": "Deluxe AC Room",
+      "roomNumber": "101",
+      "guestName": "Rohan",
+      "guestEmail": "rohanbodkhe645@gmail.com",
+      "guestPhone": "7826850589",
+      "checkIn": "2026-06-01",
+      "checkOut": "2026-06-03",
+      "guestsCount": 1,
+      "totalAmount": 3360,
+      "status": "Confirmed",
+      "paymentStatus": "Paid",
+      "createdAt": "2026-05-22T17:33:43.980Z",
+      "paymentMethod": "UPI",
+      "paymentId": "pay_SsUh0yPaPE0huc"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-1",
+      "roomId": "room-101",
+      "roomName": "Deluxe AC Room",
+      "authorName": "Rupesh Patil",
+      "rating": 5,
+      "comment": "Clean rooms, good service, and affordable prices. Very comfortable stay.",
+      "date": "2026-05-15",
+      "verified": true,
+      "approved": true
+    },
+    {
+      "id": "rev-2",
+      "roomId": "room-201",
+      "roomName": "Family Room",
+      "authorName": "Anand Shinde",
+      "rating": 5,
+      "comment": "Best lodging facility near Khultabad Naka with family-friendly environment.",
+      "date": "2026-05-18",
+      "verified": true,
+      "approved": true
+    },
+    {
+      "id": "rev-3",
+      "roomId": "room-102",
+      "roomName": "Non-AC Room",
+      "authorName": "Vijay Deshmukh",
+      "rating": 5,
+      "comment": "24×7 service and supportive staff. Highly recommended.",
+      "date": "2026-05-21",
+      "verified": true,
+      "approved": true
+    }
+  ],
+  "users": [
+    {
+      "id": "admin-auth",
+      "name": "Gurukrupa Admin",
+      "email": "admin@gurukrupahotel.com",
+      "phone": "7620586155",
+      "role": "admin",
+      "isBlocked": false,
+      "registeredAt": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "user-rupesh",
+      "name": "Rupesh Patil",
+      "email": "rupeshpatil4586@gmail.com",
+      "phone": "7620586155",
+      "role": "admin",
+      "isBlocked": false,
+      "registeredAt": "2026-05-22T08:00:00Z"
+    },
+    {
+      "id": "user-80wlrwrle",
+      "name": "ROHANBODKHE645",
+      "email": "rohanbodkhe645@gmail.com",
+      "phone": "9123456789",
+      "role": "customer",
+      "isBlocked": false,
+      "registeredAt": "2026-05-22T17:40:56.928Z"
+    }
+  ],
+  "settings": {
+    "siteName": "Gurukrupa Lodging",
+    "tagline": "Comfortable, clean, and affordable rooms for families, travelers, tourists, and business visitors.",
+    "phone": "+91 7620586155",
+    "email": "contact@gurukrupalodging.com",
+    "address": "Khultabad Naka, Khultabad, Dist. Chhatrapati Sambhajinagar",
+    "whatsappNumber": "7620586155",
+    "aboutText": "Gurukrupa Lodging is a trusted and comfortable stay destination located at Khultabad Naka, Chhatrapati Sambhajinagar. We provide clean, safe, and affordable accommodation for families, tourists, travelers, and business guests. Our lodge offers AC and Non-AC rooms with modern facilities, friendly service, and a peaceful environment to ensure a pleasant stay for every guest. Whether you are visiting for travel, work, family functions, or tourism, Gurukrupa Lodging is committed to giving you comfort, convenience, and 24×7 hospitality service.",
+    "mission": "To deliver top-tier comfortable accommodations and pristine customer service at competitive rates, ensuring every guest feels safe, clean, relaxed, and fully valued.",
+    "vision": "To become the most trusted and preferred lodging and hospitality service brand in the region, acclaimed for outstanding quality, continuous integrity, and elegant simplicity."
+  },
+  "notifications": [
+    {
+      "id": "notif-1",
+      "title": "Welcome to Gurukrupa Lodging",
+      "message": "The system is fully configured with Khultabad Naka details.",
+      "type": "system",
+      "date": "2026-05-22T10:00:00Z",
+      "read": false
+    },
+    {
+      "id": "notif-k5dkelc53",
+      "title": "New Reservation Created",
+      "message": "Rohan selected room 101 (2026-06-01 to 2026-06-03)",
+      "type": "booking",
+      "date": "2026-05-22T17:33:43.980Z",
+      "read": false
+    },
+    {
+      "id": "notif-ph26a71yf",
+      "title": "Successful Payment Received",
+      "message": "Amount of ₹3360 paid via UPI for booking BKG-2026-8075",
+      "type": "payment",
+      "date": "2026-05-22T17:35:01.842Z",
+      "read": false
+    }
+  ]
+}
